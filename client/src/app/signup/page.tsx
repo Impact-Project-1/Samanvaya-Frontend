@@ -4,6 +4,8 @@ import SignUpForm from "@/components/SignUpForm";
 import styles from "../login/page.module.css"; 
 
 export default function SignUpPage() {
+
+  
   return (
     <div className={styles.container}>
       <div className={styles.leftSide}>
@@ -17,7 +19,7 @@ export default function SignUpPage() {
         <div className={styles.overlay} />
         <div className={styles.leftContent}>
           <Link href="/" style={{ color: 'white', textDecoration: 'none' }}>
-            <h1 className={styles.logo}>eventifly</h1>
+            <h1 className={styles.logo}>Samanvaya</h1>
           </Link>
           <p className={styles.slogan}>
             Join thousands of planners and vendors. Let's make your next event unforgettable.

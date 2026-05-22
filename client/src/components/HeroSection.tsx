@@ -21,13 +21,9 @@ export default function HeroSection() {
           <div className={styles.searchBar}>
             <div className={styles.searchField}>
               <Search size={22} color="var(--disabled-text)" />
-              <input type="text" placeholder="Find your service... (e.g., Decor)" className={styles.searchInput} />
+              <input type="text" placeholder="Search vendors, categories, or locations.." className={styles.searchInput} />
             </div>
             <div className={styles.divider} />
-            <div className={styles.searchField}>
-              <MapPin size={22} color="var(--disabled-text)" />
-              <input type="text" placeholder="Location (e.g., New York, NY)" className={styles.searchInput} />
-            </div>
             <button className={styles.searchButton}>Search Vendors</button>
           </div>
         </div>

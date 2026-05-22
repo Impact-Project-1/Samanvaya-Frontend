@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Eventifly",
+  title: "Samanvaya",
   description: "Find the Perfect Vendors for Your Next Event.",
 };
 

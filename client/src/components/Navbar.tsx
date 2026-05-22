@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <Link href="/" className={styles.logo}>
-        eventifly
+        Samanvaya
       </Link>
       
       <div className={styles.navLinks}>
