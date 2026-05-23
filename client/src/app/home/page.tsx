@@ -11,20 +11,43 @@ import styles from "./page.module.css";
 import HomeNavbar from "@/components/HomeNavBar";
 
 const categories = [
-  "All",
-  "Catering",
-  "Media & Content",
-  "Decor & Design",
-  "Entertainment",
-  "Planning & Logistics",
-  "Beauty & Grooming",
+  {
+    label:"All",
+    value: "",
+  },
+  {
+    label: "Catering & Food Service",
+    value: "catering-food-service"
+  },
+  {
+    label: "Media & Content",
+    value: "media-content"
+  },
+  {
+    label: "Decor & Design",
+    value: "decor-design"
+  },
+  {
+    label: "Entertainment",
+    value: "entertainment"
+  },
+  {
+    label: "Planning & Logistics",
+    value: "planning-logistics"
+  },
+  {
+    label: "Beauty & Grooming",
+    value: "beauty-grooming"
+  }
 ];
 
 
 
 export default function DashboardPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [vendors,setVendors] = useState([]);
+  const [featuredVendors,setFeaturedVendors] = useState([]);
 
   const router = useRouter();
 
@@ -43,13 +66,41 @@ export default function DashboardPage() {
   }, []);
 
   useEffect(() => {
-    // TODO: Replace with actual API endpoint
-    const fetchVendors = async () => {
-      try {
-        // Example Placeholder API
-        // const response = await fetch(`/api/vendors?category=${selectedCategory}&search=${searchQuery}`);
+    // CREATING URL FOR BACKEND
+          const fetchVendors = async () => {
+            try {
+                  const params = new URLSearchParams();
+            
+          if (selectedCategory) {
+            params.append(
+              "category",
+              selectedCategory
+            );
+          }
+        
+          if (searchQuery.trim()) {
+            params.append(
+              "search",
+              searchQuery
+            );
+          }
+        
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/vendors/filter/?${params.toString()}`
+          );
+          const result = await response.json();
+          const data = result.data;
+          const featured = data.filter(
+              (vendor: { is_featured: any; }) => vendor.is_featured
+          );
 
-        // const data = await response.json();
+          const normal = data.filter(
+            (vendor: { is_featured: any; }) => !vendor.is_featured
+          );
+
+setFeaturedVendors(featured);
+setVendors(normal);
+          console.log("Fetched Vendors:", data);
       } catch (error) {
         console.error("Error fetching vendors:", error);
       }
@@ -90,13 +141,13 @@ export default function DashboardPage() {
         <div className={styles.categoryTabs}>
           {categories.map((category) => (
             <button
-              key={category}
+              key={category.value}
               className={`${styles.categoryTab} ${
-                selectedCategory === category ? styles.activeTab : ""
+                selectedCategory === category.value ? styles.activeTab : ""
               }`}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => setSelectedCategory(category.value)}
             >
-              {category}
+              {category.label}
             </button>
           ))}
         </div>
@@ -104,8 +155,13 @@ export default function DashboardPage() {
 
       {/* FEATURED SECTION */}
       <section className={styles.featuredSection}>
-        <VendorList />
+        <VendorList title="Featured Vendors" vendors = {featuredVendors}/>
       </section>
+
+      <VendorList
+        title="All Vendors"
+        vendors={vendors}
+      />
 
       {/* TRENDING SECTION */}
       <section className={styles.trendingSection}>
