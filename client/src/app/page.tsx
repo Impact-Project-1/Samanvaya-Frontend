@@ -5,7 +5,7 @@ import VendorList from "@/components/VendorList";
 
 export default async function Home() {
   const response = await fetch(
-    "http://localhost:8000/api/v1/vendors/filter/",
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/vendors/filter/`,
     {
       cache: "no-store",
     }

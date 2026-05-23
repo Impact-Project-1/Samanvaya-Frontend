@@ -86,7 +86,7 @@ export default function DashboardPage() {
           }
         
           const response = await fetch(
-            `http://localhost:8000/api/v1/vendors/filter/?${params.toString()}`
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/vendors/filter/?${params.toString()}`
           );
           const result = await response.json();
           const data = result.data;
