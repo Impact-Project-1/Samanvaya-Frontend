@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* Tell Tailwind v4 where to scan for class names */
+@source "../**/*.{ts,tsx,js,jsx}";
+
+@theme {
+  /* Brand colors */
+  --color-primary: #A21033;
+  --color-primary-hover: #8B0C2B;
+
+  /* Base */
+  --color-background: #FFFFFF;
+  --color-foreground: #111111;
+  --color-text-muted: #666666;
+  --color-border: #EAEAEA;
+
+  /* UI accents */
+  --color-hover-bg: #FAFAFA;
+  --color-disabled-text: #A0A0A0;
+
+  /* Status */
+  --color-star-active: #F5A623;
+  --color-star-inactive: #D8D8D8;
+
+  /* Font */
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  /*
+   * :root CSS variables kept for inline styles, raw CSS, and non-Tailwind access.
+   * These mirror the @theme values above.
+   */
+  :root {
+    --primary: #A21033;
+    --primary-hover: #8B0C2B;
+    --background: #FFFFFF;
+    --foreground: #111111;
+    --text-muted: #666666;
+    --border: #EAEAEA;
+    --hover-bg: #FAFAFA;
+    --disabled-text: #A0A0A0;
+
+    /* Radii */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    /* Overlays */
+    --overlay-light: rgba(0, 0, 0, 0.45);
+    --overlay-dark: rgba(0, 0, 0, 0.55);
+    --overlay-pink: rgba(255, 215, 222, 0.9);
+
+    /* Brand colors for Google logo SVGs */
+    --brand-google-blue: #4285F4;
+    --brand-google-green: #34A853;
+    --brand-google-yellow: #FBBC05;
+    --brand-google-red: #EA4335;
+
+    /* Status */
+    --star-active: #F5A623;
+    --star-inactive: #D8D8D8;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
