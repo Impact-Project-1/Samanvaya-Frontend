@@ -5,22 +5,25 @@
 
 @theme {
   /* Brand colors */
-  --color-primary: #A21033;
-  --color-primary-hover: #8B0C2B;
+  --color-primary: #a21033;
+  --color-primary-hover: #8b0c2b;
 
   /* Base */
-  --color-background: #FFFFFF;
+  --color-background: #ffffff;
   --color-foreground: #111111;
   --color-text-muted: #666666;
-  --color-border: #EAEAEA;
+  --color-border: #eaeaea;
 
   /* UI accents */
-  --color-hover-bg: #FAFAFA;
-  --color-disabled-text: #A0A0A0;
+  --color-hover-bg: #fafafa;
+  --color-disabled-text: #a0a0a0;
 
   /* Status */
-  --color-star-active: #F5A623;
-  --color-star-inactive: #D8D8D8;
+  --color-star-active: #f5a623;
+  --color-star-inactive: #d8d8d8;
+
+  /* Error */
+  --color-error: #ef4444;
 
   /* Font */
   --font-sans: Arial, Helvetica, sans-serif;
@@ -32,14 +35,14 @@
    * These mirror the @theme values above.
    */
   :root {
-    --primary: #A21033;
-    --primary-hover: #8B0C2B;
-    --background: #FFFFFF;
+    --primary: #a21033;
+    --primary-hover: #8b0c2b;
+    --background: #ffffff;
     --foreground: #111111;
     --text-muted: #666666;
-    --border: #EAEAEA;
-    --hover-bg: #FAFAFA;
-    --disabled-text: #A0A0A0;
+    --border: #eaeaea;
+    --hover-bg: #fafafa;
+    --disabled-text: #a0a0a0;
 
     /* Radii */
     --radius-sm: 6px;
@@ -58,14 +61,17 @@
     --overlay-pink: rgba(255, 215, 222, 0.9);
 
     /* Brand colors for Google logo SVGs */
-    --brand-google-blue: #4285F4;
-    --brand-google-green: #34A853;
-    --brand-google-yellow: #FBBC05;
-    --brand-google-red: #EA4335;
+    --brand-google-blue: #4285f4;
+    --brand-google-green: #34a853;
+    --brand-google-yellow: #fbbc05;
+    --brand-google-red: #ea4335;
 
     /* Status */
-    --star-active: #F5A623;
-    --star-inactive: #D8D8D8;
+    --star-active: #f5a623;
+    --star-inactive: #d8d8d8;
+
+    /* Error */
+    --error: #ef4444;
   }
 
   * {

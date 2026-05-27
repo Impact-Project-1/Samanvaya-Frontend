@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
 import HomeNavbar from "@/components/HomeNavBar";
 import {
-  VendorList,
   HeroSection,
-  CategoryGrid,
   useFilterVendorsQuery,
+  VendorList,
 } from "@/features/vendors";
+import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 
 const categories = [
@@ -45,7 +44,11 @@ export default function DashboardPage() {
   }, [router]);
 
   // React Query fetching with filter parameters
-  const { data: vendors = [], isLoading, error } = useFilterVendorsQuery({
+  const {
+    data: vendors = [],
+    isLoading,
+    error,
+  } = useFilterVendorsQuery({
     category: selectedCategory || undefined,
     city: searchQuery.trim() ? searchQuery : undefined, // search by location or name
   });
@@ -55,7 +58,9 @@ export default function DashboardPage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm font-semibold text-text-muted">Verifying session...</p>
+          <p className="text-sm font-semibold text-text-muted">
+            Verifying session...
+          </p>
         </div>
       </div>
     );
@@ -78,11 +83,12 @@ export default function DashboardPage() {
           {categories.map((category) => (
             <button
               key={category.value}
+              type="button"
               className={cn(
                 "px-6 py-2.5 rounded-full font-bold text-xs md:text-sm tracking-wide whitespace-nowrap transition-all duration-250 cursor-pointer shadow-xs border border-border/40",
                 selectedCategory === category.value
                   ? "bg-primary text-white shadow-lg shadow-primary/20 border-transparent"
-                  : "bg-white text-text-muted hover:bg-hover-bg"
+                  : "bg-white text-text-muted hover:bg-hover-bg",
               )}
               onClick={() => setSelectedCategory(category.value)}
             >
@@ -96,10 +102,12 @@ export default function DashboardPage() {
       {isLoading ? (
         <div className="max-w-7xl mx-auto px-4 py-16 text-center">
           <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-text-muted font-medium text-sm">Searching for vendors...</p>
+          <p className="text-text-muted font-medium text-sm">
+            Searching for vendors...
+          </p>
         </div>
       ) : error ? (
-        <div className="max-w-7xl mx-auto px-4 py-16 text-center text-red-500 font-semibold">
+        <div className="max-w-7xl mx-auto px-4 py-16 text-center text-error font-semibold">
           Error searching vendors. Please try again.
         </div>
       ) : (
@@ -110,7 +118,10 @@ export default function DashboardPage() {
           )}
 
           {/* All vendors */}
-          <VendorList title={selectedCategory ? "Filtered Vendors" : "All Vendors"} vendors={normalVendors} />
+          <VendorList
+            title={selectedCategory ? "Filtered Vendors" : "All Vendors"}
+            vendors={normalVendors}
+          />
         </>
       )}
 

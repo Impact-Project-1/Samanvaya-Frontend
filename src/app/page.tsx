@@ -1,5 +1,11 @@
 import Navbar from "@/components/Navbar";
-import { HeroSection, CategoryGrid, VendorList, filterVendors, type Vendor } from "@/features/vendors";
+import {
+  CategoryGrid,
+  filterVendors,
+  HeroSection,
+  type Vendor,
+  VendorList,
+} from "@/features/vendors";
 
 export default async function Home() {
   let vendors: Vendor[] = [];

@@ -17,7 +17,9 @@ export function VendorList({ title, vendors }: VendorListProps) {
 
       {vendors.length === 0 ? (
         <div className="text-center py-12 bg-white/40 border border-dashed border-border rounded-2xl">
-          <p className="text-text-muted text-lg">No vendors found matching the criteria.</p>
+          <p className="text-text-muted text-lg">
+            No vendors found matching the criteria.
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -58,7 +60,11 @@ export function VendorList({ title, vendors }: VendorListProps) {
                           key={star}
                           size={15}
                           fill={star <= rating ? "var(--star-active)" : "none"}
-                          color={star <= rating ? "var(--star-active)" : "var(--star-inactive)"}
+                          color={
+                            star <= rating
+                              ? "var(--star-active)"
+                              : "var(--star-inactive)"
+                          }
                         />
                       ))}
                     </div>
@@ -75,7 +81,8 @@ export function VendorList({ title, vendors }: VendorListProps) {
 
                   <div className="mt-auto pt-4 border-t border-border/40 flex items-center justify-between">
                     <p className="text-sm font-bold text-foreground">
-                      Starting at <span className="text-primary">${v.price_range_low}</span>
+                      Starting at{" "}
+                      <span className="text-primary">${v.price_range_low}</span>
                     </p>
                     <span className="text-xs text-disabled-text font-medium">
                       up to ${v.price_range_high}

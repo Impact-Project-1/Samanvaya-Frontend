@@ -5,20 +5,41 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
 bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | Description |
+|--------|-------------|
+| `bun dev` | Start development server |
+| `bun run build` | Build for production |
+| `bun run lint` | Check code with Biome linter |
+| `bun run lint:fix` | Lint and auto-fix code |
+| `bun run format` | Format code with Biome |
+| `bun run typecheck` | Type check with TypeScript |
+
+## Theme Colors
+
+All colors are defined in `src/app/globals.css` using Tailwind v4's `@theme` directive:
+
+| Variable | Color | Usage |
+|----------|-------|-----|
+| `--primary` | `#a21033` | Brand primary color |
+| `--primary-hover` | `#8b0c2b` | Primary hover state |
+| `--background` | `#ffffff` | Page background |
+| `--foreground` | `#111111` | Primary text |
+| `--text-muted` | `#666666` | Secondary text |
+| `--border` | `#eaeaea` | Border color |
+| `--hover-bg` | `#fafafa` | Hover backgrounds |
+| `--disabled-text` | `#a0a0a0` | Disabled text |
+| `--star-active` | `#f5a623` | Active star rating |
+| `--star-inactive` | `#d8d8d8` | Inactive star rating |
+| `--error` | `#ef4444` | Error messages |
+
+Use colors via Tailwind classes: `bg-primary`, `text-foreground`, `border-border`, etc.
 
 ## Learn More
 

@@ -1,18 +1,19 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-  fetchVendors,
-  fetchVendorById,
   createVendor,
-  updateVendor,
   deleteVendor,
+  fetchVendorById,
+  fetchVendors,
   filterVendors,
+  updateVendor,
 } from "../api";
 import type { Vendor, VendorFilterParams } from "../schemas";
 
 export const vendorKeys = {
   all: ["vendors"] as const,
   lists: () => [...vendorKeys.all, "list"] as const,
-  list: (params: VendorFilterParams) => [...vendorKeys.lists(), params] as const,
+  list: (params: VendorFilterParams) =>
+    [...vendorKeys.lists(), params] as const,
   details: () => [...vendorKeys.all, "detail"] as const,
   detail: (id: string) => [...vendorKeys.details(), id] as const,
 };
@@ -52,7 +53,8 @@ export function useCreateVendorMutation() {
 export function useUpdateVendorMutation(id: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (updatedVendor: Partial<Vendor>) => updateVendor(id, updatedVendor),
+    mutationFn: (updatedVendor: Partial<Vendor>) =>
+      updateVendor(id, updatedVendor),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: vendorKeys.all });
       queryClient.invalidateQueries({ queryKey: vendorKeys.detail(id) });

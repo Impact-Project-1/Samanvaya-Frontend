@@ -1,18 +1,18 @@
-import { z } from "zod";
+import type { z } from "zod";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 interface RequestOptions {
   headers?: Record<string, string>;
-  body?: any;
+  body?: unknown;
   params?: Record<string, string>;
 }
 
 class ApiError extends Error {
   status: number;
-  data: any;
+  data: unknown;
 
-  constructor(message: string, status: number, data?: any) {
+  constructor(message: string, status: number, data?: unknown) {
     super(message);
     this.name = "ApiError";
     this.status = status;
@@ -24,7 +24,7 @@ async function request<T>(
   method: string,
   path: string,
   schema?: z.ZodSchema<T>,
-  options: RequestOptions = {}
+  options: RequestOptions = {},
 ): Promise<T> {
   const url = new URL(path, BASE_URL);
   if (options.params) {
@@ -53,7 +53,7 @@ async function request<T>(
   const response = await fetch(url.toString(), config);
 
   if (!response.ok) {
-    let errorData;
+    let errorData: unknown = null;
     try {
       errorData = await response.json();
     } catch {
@@ -62,7 +62,7 @@ async function request<T>(
     throw new ApiError(
       response.statusText || "Request failed",
       response.status,
-      errorData
+      errorData,
     );
   }
 
@@ -70,7 +70,10 @@ async function request<T>(
 
   if (schema) {
     // Some API envelopes might wrap the response in { data: ... }
-    const dataToValidate = result && typeof result === "object" && "data" in result ? result.data : result;
+    const dataToValidate =
+      result && typeof result === "object" && "data" in result
+        ? result.data
+        : result;
     return schema.parse(dataToValidate);
   }
 
@@ -78,11 +81,14 @@ async function request<T>(
 }
 
 export const apiClient = {
-  get: <T>(path: string, schema?: z.ZodSchema<T>, params?: Record<string, string>) =>
-    request<T>("GET", path, schema, { params }),
-  post: <T>(path: string, body: any, schema?: z.ZodSchema<T>) =>
+  get: <T>(
+    path: string,
+    schema?: z.ZodSchema<T>,
+    params?: Record<string, string>,
+  ) => request<T>("GET", path, schema, { params }),
+  post: <T>(path: string, body: unknown, schema?: z.ZodSchema<T>) =>
     request<T>("POST", path, schema, { body }),
-  put: <T>(path: string, body: any, schema?: z.ZodSchema<T>) =>
+  put: <T>(path: string, body: unknown, schema?: z.ZodSchema<T>) =>
     request<T>("PUT", path, schema, { body }),
   delete: <T>(path: string, schema?: z.ZodSchema<T>) =>
     request<T>("DELETE", path, schema),

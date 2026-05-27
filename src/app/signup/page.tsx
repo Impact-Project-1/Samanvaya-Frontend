@@ -14,7 +14,7 @@ export default function SignUpPage() {
           style={{ objectFit: "cover" }}
           priority
         />
-        <div className="absolute inset-0 bg-black/45 z-1" />
+        <div className="absolute inset-0 bg-overlay-light z-1" />
         <div className="relative z-2 text-white max-w-md">
           <Link href="/" className="hover:opacity-90">
             <h1 className="text-5xl font-extrabold tracking-tight mb-6">
@@ -22,7 +22,8 @@ export default function SignUpPage() {
             </h1>
           </Link>
           <p className="text-lg font-medium leading-relaxed opacity-95">
-            Join thousands of planners and vendors. Let's make your next event unforgettable.
+            Join thousands of planners and vendors. Let's make your next event
+            unforgettable.
           </p>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    async rewrites() {
+  async rewrites() {
     return [
       {
-        source: '/api/:path*', // Matches all requests starting with /api/
-        destination: 'http://localhost:8000/api/:path*', // Forwards to your backend
+        source: "/api/:path*", // Matches all requests starting with /api/
+        destination: "http://localhost:8000/api/:path*", // Forwards to your backend
       },
     ];
   },
