@@ -1,24 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { logout } from "@/features/auth/api/logout";
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import {
+  Bell,
+  Heart,
+  User,
+  ChevronDown,
+  LogOut,
+  Store,
+  Bookmark,
+} from "lucide-react";
 
 export default function HomeNavbar() {
-  const [initial, setInitial] = useState("R");
+  const router = useRouter();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (user?.email) {
-        const name = user.user_metadata?.full_name || user.email;
-        setInitial(name[0].toUpperCase());
-      }
-    };
-    fetchUser();
-  }, []);
+const handleLogout = async () => {
+  try {
+    await logout();
+
+    router.replace("/");
+  } catch (error) {
+    console.error("Logout failed", error);
+  }
+};
 
   return (
     <nav className="w-full h-20 flex items-center justify-between px-10 bg-background border-b border-border/40 sticky top-0 z-50">
@@ -55,23 +63,63 @@ export default function HomeNavbar() {
 
       {/* Right */}
       <div className="flex items-center gap-4">
-        <button
-          type="button"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-hover-bg text-lg hover:bg-border/40 transition-colors duration-200"
-        >
-          🔔
-        </button>
+         <button className=" group rounded-full p-2 transition-all duration-300 hover:scale-110 hover:bg-muted hover:shadow-md">
+            <Bell className=" h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+          </button>
 
-        <button
-          type="button"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-hover-bg text-lg hover:bg-border/40 transition-colors duration-200"
-        >
-          ❤️
-        </button>
+          <button className="group rounded-full p-2 transition-all duration-300 hover:scale-110 hover:bg-muted hover:shadow-md">
+            <Heart className="h-5 w-5 transition-transform duration-300 group-hover:scale-100" />
+          </button>
 
-        <div className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center font-extrabold text-sm shadow-md shadow-primary/20 cursor-pointer">
-          {initial}
-        </div>
+        <DropdownMenu.Root>
+           <DropdownMenu.Trigger asChild>
+             <button className="flex items-center gap-2 px-3 py-2 group rounded-full border transition-all duration-300 hover:scale-110 hover:bg-muted hover:shadow-md">
+               <User className="h-4 w-4 group-hover:-translate-y-0.5" />
+               <ChevronDown className="h-4 w-4" /> 
+             </button>
+           </DropdownMenu.Trigger>
+           <DropdownMenu.Portal>
+             <DropdownMenu.Content
+               sideOffset={8}
+               align="end"
+               className="z-50 min-w-[220px] rounded-xl bg-background p-1 shadow-lg-md border border-border"
+             >
+               <DropdownMenu.Item asChild>
+                 <Link
+                   href="/profile"
+                   className="flex cursor-pointer items-center gap-2 px-3 py-2 outline-none  hover:bg-primary hover:text-background transition-colors duration-200"
+                 >
+                   <User className="h-4 w-4" />
+                   My Profile
+                 </Link>
+               </DropdownMenu.Item>
+               <DropdownMenu.Item asChild>
+                 <Link
+                   href="/saved"
+                   className="flex cursor-pointer items-center gap-2 px-3 py-2 outline-none  hover:bg-primary hover:text-background transition-colors duration-200"
+                 >
+                   <Bookmark className="h-4 w-4" />
+                   Saved Vendors
+                 </Link>
+               </DropdownMenu.Item>
+               <DropdownMenu.Separator className="my-1 h-px bg-border" />
+               <DropdownMenu.Item asChild>
+                 <Link
+                   href="/vendor/register"
+                   className="flex cursor-pointer items-center gap-2  px-3 py-2 outline-none  hover:bg-primary hover:text-background transition-colors duration-200"
+                 >
+                   <Store className="h-4 w-4" />
+                   Become a Vendor
+                 </Link>
+               </DropdownMenu.Item>
+               <DropdownMenu.Separator className="my-1 h-px bg-border" />
+               <DropdownMenu.Item onSelect={handleLogout} className="flex cursor-pointer items-center gap-2  px-3 py-2 outline-none hover:bg-primary hover:text-background transition-colors duration-200">
+                 <LogOut className="h-4 w-4" />
+                 Logout
+               </DropdownMenu.Item>
+             </DropdownMenu.Content>
+           </DropdownMenu.Portal>
+         </DropdownMenu.Root>
       </div>
     </nav>
   );
