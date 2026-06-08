@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import HomeNavbar from "@/components/HomeNavBar";
+import { useRequireAuth } from  "@/features/auth/hooks/useRequireAuth";
 import {
   HeroSection,
   useFilterVendorsQuery,
@@ -22,26 +23,10 @@ const categories = [
 ];
 
 export default function DashboardPage() {
-  const router = useRouter();
+  const authChecked = useRequireAuth();
+
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [authChecked, setAuthChecked] = useState(false);
-
-  useEffect(() => {
-    const checkUser = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-
-      if (!session) {
-        router.push("/login");
-      } else {
-        setAuthChecked(true);
-      }
-    };
-
-    checkUser();
-  }, [router]);
 
   // React Query fetching with filter parameters
   const {

@@ -21,8 +21,8 @@ export default async function Home() {
     <main className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <CategoryGrid />
       <VendorList title="Featured Vendors" vendors={featured} />
+      <CategoryGrid />
     </main>
   );
 }
