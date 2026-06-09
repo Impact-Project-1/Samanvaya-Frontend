@@ -31,7 +31,7 @@ export function VendorList({ title, vendors }: VendorListProps) {
                 className="group relative flex flex-col bg-white border border-border/60 rounded-2xl overflow-hidden shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
                 {/* Image Placeholder */}
-                <div className="relative w-full h-48 bg-gradient-to-tr from-primary/10 via-primary/5 to-white flex items-center justify-center border-b border-border/40">
+                <div className="relative w-full h-48 bg-linear-to-tr from-primary/10 via-primary/5 to-white flex items-center justify-center border-b border-border/40">
                   <span className="text-primary/40 font-bold uppercase tracking-wider text-xs">
                     {v.category || "Vendor"}
                   </span>
@@ -82,10 +82,10 @@ export function VendorList({ title, vendors }: VendorListProps) {
                   <div className="mt-auto pt-4 border-t border-border/40 flex items-center justify-between">
                     <p className="text-sm font-bold text-foreground">
                       Starting at{" "}
-                      <span className="text-primary">${v.price_range_low}</span>
+                      <span className="text-primary">Rs.{v.price_range_low}</span>
                     </p>
                     <span className="text-xs text-disabled-text font-medium">
-                      up to ${v.price_range_high}
+                      up to Rs.{v.price_range_high}
                     </span>
                   </div>
                 </div>
