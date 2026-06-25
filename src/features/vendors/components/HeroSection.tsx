@@ -2,13 +2,20 @@
 
 import { Search } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface HeroSectionProps {
   onSearch?: (query: string) => void;
+  showActions?: boolean;
 }
 
-export function HeroSection({ onSearch }: HeroSectionProps) {
+export function HeroSection({
+  onSearch,
+  showActions = false,
+}: HeroSectionProps) {
   const [query, setQuery] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -17,8 +24,8 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
   };
 
   return (
-    <div className="px-[2%] mt-4 max-w-7xl mx-auto">
-      <section className="relative w-full h-[60vh] min-h-[460px] rounded-3xl overflow-hidden flex flex-col justify-center items-center text-center">
+    <div className="mx-auto mt-4 max-w-7xl px-4">
+      <section className="relative flex min-h-[460px] w-full flex-col items-center justify-center overflow-hidden rounded-lg text-center">
         <Image
           src="/hero_bg.png"
           alt="Elegant Event Setup"
@@ -28,16 +35,14 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
           className="transition-transform duration-[20s] ease-out hover:scale-105"
         />
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-overlay-light z-1" />
+        <div className="absolute inset-0 z-1 bg-overlay-light" />
 
         {/* Content wrapper */}
-        <div className="relative z-2 text-white max-w-3xl w-full px-6 flex flex-col items-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-4 animate-fade-in">
-            Find the Perfect Vendors
-            <br />
-            for Your Next Event
+        <div className="relative z-2 flex w-full max-w-3xl flex-col items-center px-6 text-primary-foreground">
+          <h1 className="mb-4 text-4xl font-extrabold leading-tight tracking-normal md:text-6xl">
+            Find trusted event vendors near you
           </h1>
-          <p className="text-base md:text-lg font-medium text-white/90 mb-10 max-w-xl">
+          <p className="mb-8 max-w-xl text-base font-medium text-primary-foreground/90 md:text-lg">
             Discover and book trusted decorators, caterers, and media
             professionals near you.
           </p>
@@ -45,28 +50,34 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
           {/* Search bar form */}
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-3xl bg-white p-2 rounded-2xl md:rounded-full shadow-2xl flex flex-col md:flex-row items-center gap-2 hover:shadow-primary/10 transition-all duration-300"
+            className="flex w-full max-w-3xl flex-col items-center gap-2 rounded-lg bg-card p-2 shadow-lg transition-all duration-300 md:flex-row"
           >
-            <div className="flex items-center flex-1 w-full px-4 gap-3 text-text-muted">
-              <Search size={22} className="text-disabled-text shrink-0" />
-              <input
+            <div className="flex w-full flex-1 items-center gap-3 px-2 text-muted-foreground">
+              <Search size={22} className="shrink-0 text-muted-foreground" />
+              <Input
                 type="text"
                 placeholder="Search vendors, categories, or locations..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full py-3 bg-transparent text-foreground placeholder:text-disabled-text font-medium outline-hidden text-sm md:text-base"
+                className="border-0 shadow-none focus-visible:ring-0"
               />
             </div>
 
-            <div className="hidden md:block w-[1px] h-8 bg-border" />
-
-            <button
-              type="submit"
-              className="w-full md:w-auto bg-primary hover:bg-primary-hover active:scale-98 text-white py-3.5 px-8 rounded-xl md:rounded-full font-bold text-sm md:text-base tracking-wide shadow-lg shadow-primary/25 transition-all duration-200 cursor-pointer whitespace-nowrap"
-            >
+            <Button type="submit" className="w-full md:w-auto">
               Search Vendors
-            </button>
+            </Button>
           </form>
+
+          {showActions && (
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              <Button asChild variant="secondary">
+                <Link href="/signup">Create Account</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/login">Login</Link>
+              </Button>
+            </div>
+          )}
         </div>
       </section>
     </div>

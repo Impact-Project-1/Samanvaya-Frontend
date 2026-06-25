@@ -1,28 +1,11 @@
 import Navbar from "@/components/Navbar";
-import {
-  CategoryGrid,
-  filterVendors,
-  HeroSection,
-  type Vendor,
-  VendorList,
-} from "@/features/vendors";
+import { VendorDiscovery } from "@/features/vendors";
 
-export default async function Home() {
-  let vendors: Vendor[] = [];
-  try {
-    vendors = await filterVendors({});
-  } catch (error) {
-    console.error("Error fetching initial vendors:", error);
-  }
-
-  const featured = vendors.filter((vendor) => vendor.is_featured);
-
+export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
-      <HeroSection />
-      <VendorList title="Featured Vendors" vendors={featured} />
-      <CategoryGrid />
+      <VendorDiscovery showHeroActions />
     </main>
   );
 }

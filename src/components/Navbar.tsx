@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between py-5 px-[5%] bg-background sticky top-0 z-50 shadow-sm">
+    <nav className="sticky top-0 z-50 flex items-center justify-between border-border border-b bg-background px-[5%] py-4">
       <Link
         href="/"
         className="text-2xl font-extrabold text-primary tracking-tight"
@@ -10,7 +11,7 @@ export default function Navbar() {
         Samanvaya
       </Link>
 
-      <div className="hidden md:flex items-center gap-8">
+      <div className="hidden items-center gap-8 md:flex">
         <Link
           href="#"
           className="text-foreground hover:text-primary font-semibold text-sm transition-colors duration-200"
@@ -32,18 +33,12 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center gap-6">
-        <Link
-          href="/login"
-          className="font-bold text-foreground hover:text-primary text-sm transition-colors duration-200"
-        >
-          Login
-        </Link>
-        <Link
-          href="/signup"
-          className="bg-primary hover:bg-primary-hover text-white py-2.5 px-6 rounded-full font-bold text-sm shadow-md shadow-primary/10 transition-colors duration-200"
-        >
-          Sign Up
-        </Link>
+        <Button asChild variant="ghost">
+          <Link href="/login">Login</Link>
+        </Button>
+        <Button asChild>
+          <Link href="/signup">Sign Up</Link>
+        </Button>
       </div>
     </nav>
   );
