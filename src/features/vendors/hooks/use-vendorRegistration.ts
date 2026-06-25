@@ -10,9 +10,7 @@ export function useVendorRegistration() {
     mutationFn: registerVendor,
 
     onSuccess: () => {
-      router.push(
-        "/vendor/application-status"
-      );
+      router.push("/vendor/application-status");
     },
   });
 }

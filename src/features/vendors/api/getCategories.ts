@@ -1,24 +1,18 @@
-// api/getCategories.ts
+import { z } from "zod";
+import { apiClient } from "@/api/client";
+import { endpoints } from "@/api/endpoints";
 
-export interface Category {
-  category_id: number;
-  name: string;
-  slug: string;
-}
+export const CategorySchema = z.object({
+  category_id: z.number(),
+  name: z.string(),
+  slug: z.string(),
+});
+
+export type Category = z.infer<typeof CategorySchema>;
 
 export async function getCategories(): Promise<Category[]> {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/categories`
+  return apiClient.get<Category[]>(
+    endpoints.categories.base,
+    z.array(CategorySchema),
   );
-
-  if (!response.ok) {
-    throw new Error(
-      "Failed to fetch categories"
-    );
-  }
-
-  const result: Category[] =
-    await response.json();
-
-  return result;
 }

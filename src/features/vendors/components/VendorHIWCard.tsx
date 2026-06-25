@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  FileText,
-  ShieldCheck,
-  Search,
-  CalendarCheck,
-} from "lucide-react";
+import { CalendarCheck, FileText, Search, ShieldCheck } from "lucide-react";
 
 const steps = [
   {
@@ -29,8 +24,7 @@ const steps = [
   {
     icon: CalendarCheck,
     title: "Receive Bookings",
-    description:
-      "Start receiving inquiries and grow your business.",
+    description: "Start receiving inquiries and grow your business.",
   },
 ];
 
@@ -82,9 +76,7 @@ export function VendorHowItWorksCard() {
                     </span>
                   </div>
 
-                  <h4 className="mt-1 font-semibold">
-                    {step.title}
-                  </h4>
+                  <h4 className="mt-1 font-semibold">{step.title}</h4>
 
                   <p className="mt-1 text-sm text-background/75">
                     {step.description}

@@ -27,7 +27,6 @@ export const INDIAN_STATES = [
   "Uttar Pradesh",
   "Uttarakhand",
   "West Bengal",
-] as const;   
+] as const;
 
-export type StateName =
-  (typeof INDIAN_STATES)[number];
+export type StateName = (typeof INDIAN_STATES)[number];

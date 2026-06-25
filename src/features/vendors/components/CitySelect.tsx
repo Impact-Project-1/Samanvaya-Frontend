@@ -1,24 +1,25 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { UseFormReturn } from "react-hook-form";
 import { MapPin } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { type UseFormReturn, useWatch } from "react-hook-form";
 
 import { CITIES } from "../constants/cities";
 import type { VendorRegistrationFormData } from "../schemas/vendorRegistration.schema";
 
 interface CitySelectProps {
   form: UseFormReturn<VendorRegistrationFormData>;
+  id?: string;
 }
 
-export function CitySelect({
-  form,
-}: CitySelectProps) {
+export function CitySelect({ form, id }: CitySelectProps) {
   const [citySearch, setCitySearch] = useState("");
-  const [showSuggestions, setShowSuggestions] =
-    useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const selectedState = form.watch("state");
+  const selectedState = useWatch({
+    control: form.control,
+    name: "state",
+  });
 
   const cities = useMemo(() => {
     if (!selectedState) return [];
@@ -32,13 +33,17 @@ export function CitySelect({
     }
 
     return cities.filter((city) =>
-      city
-        .toLowerCase()
-        .includes(citySearch.toLowerCase())
+      city.toLowerCase().includes(citySearch.toLowerCase()),
     );
   }, [cities, citySearch]);
 
   useEffect(() => {
+    if (!selectedState) {
+      setCitySearch("");
+      form.setValue("city", "");
+      return;
+    }
+
     setCitySearch("");
     form.setValue("city", "");
   }, [selectedState, form]);
@@ -46,20 +51,12 @@ export function CitySelect({
   return (
     <div className="relative">
       <input
+        id={id}
         value={citySearch}
         disabled={!selectedState}
-        placeholder={
-          selectedState
-            ? "Search city..."
-            : "Select state first"
-        }
+        placeholder={selectedState ? "Search city..." : "Select state first"}
         onFocus={() => setShowSuggestions(true)}
-        onBlur={() =>
-          setTimeout(
-            () => setShowSuggestions(false),
-            150
-          )
-        }
+        onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
         onChange={(e) => {
           const value = e.target.value;
 
@@ -88,10 +85,9 @@ export function CitySelect({
         "
       />
 
-      {showSuggestions &&
-        filteredCities.length > 0 && (
-          <div
-            className="
+      {showSuggestions && filteredCities.length > 0 && (
+        <div
+          className="
               absolute
               z-50
               mt-2
@@ -104,12 +100,12 @@ export function CitySelect({
               bg-background
               shadow-lg
             "
-          >
-            {filteredCities.map((city) => (
-              <button
-                key={city}
-                type="button"
-                className="
+        >
+          {filteredCities.map((city) => (
+            <button
+              key={city}
+              type="button"
+              className="
                   flex
                   w-full
                   items-center
@@ -121,22 +117,22 @@ export function CitySelect({
                   transition-colors
                   hover:bg-primary/5
                 "
-                onClick={() => {
-                  setCitySearch(city);
+              onClick={() => {
+                setCitySearch(city);
 
-                  form.setValue("city", city, {
-                    shouldValidate: true,
-                  });
+                form.setValue("city", city, {
+                  shouldValidate: true,
+                });
 
-                  setShowSuggestions(false);
-                }}
-              >
-                <MapPin className="h-4 w-4 text-primary" />
-                {city}
-              </button>
-            ))}
-          </div>
-        )}
+                setShowSuggestions(false);
+              }}
+            >
+              <MapPin className="h-4 w-4 text-primary" />
+              {city}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

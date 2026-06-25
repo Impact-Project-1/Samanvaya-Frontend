@@ -1,8 +1,6 @@
 import { supabase } from "@/lib/supabase";
 
-import type {
-  VendorRegistrationFormData,
-} from "../schemas/vendorRegistration.schema";
+import type { VendorRegistrationFormData } from "../schemas/vendorRegistration.schema";
 
 interface ApiResponse<T> {
   success: boolean;
@@ -15,17 +13,12 @@ interface VendorRegistrationResponse {
 }
 
 export async function registerVendor(
-  data: VendorRegistrationFormData
-): Promise<
-  ApiResponse<VendorRegistrationResponse>
-> {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL;
+  data: VendorRegistrationFormData,
+): Promise<ApiResponse<VendorRegistrationResponse>> {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   if (!apiUrl) {
-    throw new Error(
-      "API URL is not configured"
-    );
+    throw new Error("API URL is not configured");
   }
 
   const {
@@ -34,42 +27,32 @@ export async function registerVendor(
   } = await supabase.auth.getSession();
 
   if (sessionError) {
-    throw new Error(
-      "Failed to retrieve session"
-    );
+    throw new Error("Failed to retrieve session");
   }
 
   if (!session?.access_token) {
-    throw new Error(
-      "Please login to continue"
-    );
+    throw new Error("Please login to continue");
   }
 
   try {
-    const response = await fetch(
-      `${apiUrl}/api/v1/vendors`,
-      {
-        method: "POST",
+    const response = await fetch(`${apiUrl}/api/v1/vendors`, {
+      method: "POST",
 
-        headers: {
-          "Content-Type":
-            "application/json",
+      headers: {
+        "Content-Type": "application/json",
 
-          Authorization: `Bearer ${session.access_token}`,
-        },
+        Authorization: `Bearer ${session.access_token}`,
+      },
 
-        body: JSON.stringify(data),
-      }
-    );
+      body: JSON.stringify(data),
+    });
 
     const result = await response.json();
     console.log("BACKEND RESPONSE", result);
 
     if (!response.ok) {
       throw new Error(
-        result?.detail ??
-          result?.message ??
-          "Failed to create vendor"
+        result?.detail ?? result?.message ?? "Failed to create vendor",
       );
     }
 
@@ -79,8 +62,6 @@ export async function registerVendor(
       throw error;
     }
 
-    throw new Error(
-      "Unexpected error occurred while creating vendor"
-    );
+    throw new Error("Unexpected error occurred while creating vendor");
   }
 }

@@ -15,21 +15,9 @@ export const CITIES = {
     "Tawang",
     "Ziro",
   ],
-  "Assam": [
-    "Dibrugarh",
-    "Guwahati",
-    "North Lakhimpur",
-    "Silchar",
-    "Tezpur",
-  ],
-  "Bihar": [
-    "Bhagalpur",
-    "Biharsharif",
-    "Darbhanga",
-    "Gaya",
-    "Patna",
-  ],
-  "Chhattisgarh": [
+  Assam: ["Dibrugarh", "Guwahati", "North Lakhimpur", "Silchar", "Tezpur"],
+  Bihar: ["Bhagalpur", "Biharsharif", "Darbhanga", "Gaya", "Patna"],
+  Chhattisgarh: [
     "Bilaspur",
     "Durg",
     "Korba",
@@ -37,15 +25,8 @@ export const CITIES = {
     "Raipur",
     "Rajnandgaon",
   ],
-  "Goa": [
-    "Goa Velha",
-    "Mapusa",
-    "Margao",
-    "Panaji",
-    "Ponda",
-    "Vasco-da-Gama",
-  ],
-  "Gujarat": [
+  Goa: ["Goa Velha", "Mapusa", "Margao", "Panaji", "Ponda", "Vasco-da-Gama"],
+  Gujarat: [
     "Ahmedabad",
     "Gandhinagar",
     "Junagadh",
@@ -53,13 +34,7 @@ export const CITIES = {
     "Surat",
     "Vadodara",
   ],
-  "Haryana": [
-    "Ambala",
-    "Faridabad",
-    "Gurgaon",
-    "Panipat",
-    "Sonipat",
-  ],
+  Haryana: ["Ambala", "Faridabad", "Gurgaon", "Panipat", "Sonipat"],
   "Himachal Pradesh": [
     "Bilaspur",
     "Chamba",
@@ -68,7 +43,7 @@ export const CITIES = {
     "Shimla",
     "Solan",
   ],
-  "Jharkhand": [
+  Jharkhand: [
     "Bokaro Steel City",
     "Deoghar",
     "Dhanbad",
@@ -76,7 +51,7 @@ export const CITIES = {
     "Jamshedpur",
     "Ranchi",
   ],
-  "Karnataka": [
+  Karnataka: [
     "Belgaum",
     "Bengaluru",
     "Davangere",
@@ -84,7 +59,7 @@ export const CITIES = {
     "Mangalore",
     "Mysore",
   ],
-  "Kerala": [
+  Kerala: [
     "Kochi",
     "Kozhikode",
     "Malappuram",
@@ -99,15 +74,8 @@ export const CITIES = {
     "Sagar",
     "Ujjain",
   ],
-  "Maharashtra": [
-    "Aurangabad",
-    "Mumbai",
-    "Nagpur",
-    "Nashik",
-    "Pune",
-    "Solapur",
-  ],
-  "Manipur": [
+  Maharashtra: ["Aurangabad", "Mumbai", "Nagpur", "Nashik", "Pune", "Solapur"],
+  Manipur: [
     "Bishnupur",
     "Chandel",
     "Imphal",
@@ -115,7 +83,7 @@ export const CITIES = {
     "Tamenglong",
     "Ukhrul",
   ],
-  "Meghalaya": [
+  Meghalaya: [
     "Baghmara",
     "Cherrapunji",
     "Jowai",
@@ -123,15 +91,8 @@ export const CITIES = {
     "Shillong",
     "Tura",
   ],
-  "Mizoram": [
-    "Aizawl",
-    "Champhai",
-    "Lunglei",
-    "Mamit",
-    "Serchhip",
-    "Tuipang",
-  ],
-  "Nagaland": [
+  Mizoram: ["Aizawl", "Champhai", "Lunglei", "Mamit", "Serchhip", "Tuipang"],
+  Nagaland: [
     "Kiphire Sadar",
     "Kohima",
     "Mokokchung",
@@ -139,7 +100,7 @@ export const CITIES = {
     "Tuensang",
     "Zunheboto",
   ],
-  "Odisha": [
+  Odisha: [
     "Bhubaneswar",
     "Brahmapur",
     "Cuttack",
@@ -147,7 +108,7 @@ export const CITIES = {
     "Rourkela",
     "Sambalpur",
   ],
-  "Punjab": [
+  Punjab: [
     "Amritsar",
     "Chandigarh",
     "Jalandhar",
@@ -155,21 +116,8 @@ export const CITIES = {
     "Ludhiana",
     "Patiala",
   ],
-  "Rajasthan": [
-    "Ajmer",
-    "Bikaner",
-    "Jaipur",
-    "Jaisalmer",
-    "Jodhpur",
-    "Udaipur",
-  ],
-  "Sikkim": [
-    "Gangtok",
-    "Gyalshing",
-    "Mangan",
-    "Namchi",
-    "Rabdentse",
-  ],
+  Rajasthan: ["Ajmer", "Bikaner", "Jaipur", "Jaisalmer", "Jodhpur", "Udaipur"],
+  Sikkim: ["Gangtok", "Gyalshing", "Mangan", "Namchi", "Rabdentse"],
   "Tamil Nadu": [
     "Chennai",
     "Coimbatore",
@@ -178,7 +126,7 @@ export const CITIES = {
     "Tiruchirappalli",
     "Vellore",
   ],
-  "Telangana": [
+  Telangana: [
     "Adilabad",
     "Hyderabad",
     "Karimnagar",
@@ -186,7 +134,7 @@ export const CITIES = {
     "Nizamabad",
     "Warangal",
   ],
-  "Tripura": [
+  Tripura: [
     "Agartala",
     "Amarpur",
     "Gakulnagar",
@@ -202,7 +150,7 @@ export const CITIES = {
     "Noida",
     "Varanasi",
   ],
-  "Uttarakhand": [
+  Uttarakhand: [
     "Dehradun",
     "Haridwar",
     "Haldwani",
@@ -218,4 +166,4 @@ export const CITIES = {
     "Kolkata",
     "Siliguri",
   ],
-};   
+};

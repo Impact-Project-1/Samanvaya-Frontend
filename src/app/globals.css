@@ -7,12 +7,21 @@
   /* Brand colors */
   --color-primary: #a21033;
   --color-primary-hover: #8b0c2b;
+  --color-primary-foreground: #ffffff;
 
   /* Base */
   --color-background: #ffffff;
   --color-foreground: #111111;
+  --color-card: #ffffff;
+  --color-card-foreground: #111111;
+  --color-muted: #f6f6f6;
+  --color-muted-foreground: #666666;
+  --color-secondary: #f4eef0;
+  --color-secondary-foreground: #481827;
   --color-text-muted: #666666;
   --color-border: #eaeaea;
+  --color-input: #eaeaea;
+  --color-ring: #a21033;
 
   /* UI accents */
   --color-hover-bg: #fafafa;
@@ -37,11 +46,20 @@
   :root {
     --primary: #a21033;
     --primary-hover: #8b0c2b;
+    --primary-foreground: #ffffff;
     --background: #ffffff;
     --lightground: #f9f9f9c1;
     --foreground: #111111;
+    --card: #ffffff;
+    --card-foreground: #111111;
+    --muted: #f6f6f6;
+    --muted-foreground: #666666;
+    --secondary: #f4eef0;
+    --secondary-foreground: #481827;
     --text-muted: #666666;
     --border: #eaeaea;
+    --input: #eaeaea;
+    --ring: #a21033;
     --hover-bg: #fafafa;
     --disabled-text: #a0a0a0;
 
@@ -111,7 +129,6 @@
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
-  
 }
 /* Global Scrollbar */
 
