@@ -24,6 +24,8 @@ export const VendorSchema = z.object({
 
 export type Vendor = z.infer<typeof VendorSchema>;
 
+export const VendorApiSchema = VendorSchema as unknown as z.ZodSchema<Vendor>;
+
 export const VendorFilterParamsSchema = z.object({
   city: z.string().optional(),
   state: z.string().optional(),

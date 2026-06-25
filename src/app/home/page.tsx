@@ -1,15 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HomeNavbar from "@/components/HomeNavBar";
-import { useRequireAuth } from  "@/features/auth/hooks/useRequireAuth";
+import { useRequireAuth } from "@/features/auth/hooks/useRequireAuth";
 import {
   HeroSection,
   useFilterVendorsQuery,
   VendorList,
 } from "@/features/vendors";
-import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 
 const categories = [

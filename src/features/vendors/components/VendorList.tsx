@@ -82,7 +82,9 @@ export function VendorList({ title, vendors }: VendorListProps) {
                   <div className="mt-auto pt-4 border-t border-border/40 flex items-center justify-between">
                     <p className="text-sm font-bold text-foreground">
                       Starting at{" "}
-                      <span className="text-primary">Rs.{v.price_range_low}</span>
+                      <span className="text-primary">
+                        Rs.{v.price_range_low}
+                      </span>
                     </p>
                     <span className="text-xs text-disabled-text font-medium">
                       up to Rs.{v.price_range_high}

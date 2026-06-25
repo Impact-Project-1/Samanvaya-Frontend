@@ -1,27 +1,24 @@
 import * as Select from "@radix-ui/react-select";
-import { Controller, Control } from "react-hook-form";
-import { ChevronDown, Check } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
+import { type Control, Controller } from "react-hook-form";
 
 import { INDIAN_STATES } from "../constants/states";
-import { VendorRegistrationFormData } from "../schemas/vendorRegistration.schema";
+import type { VendorRegistrationFormData } from "../schemas/vendorRegistration.schema";
 
 interface StateSelectProps {
   control: Control<VendorRegistrationFormData>;
+  id?: string;
 }
 
-export function StateSelect({
-  control,
-}: StateSelectProps) {
+export function StateSelect({ control, id }: StateSelectProps) {
   return (
     <Controller
       control={control}
       name="state"
       render={({ field }) => (
-        <Select.Root
-          value={field.value}
-          onValueChange={field.onChange}
-        >
+        <Select.Root value={field.value} onValueChange={field.onChange}>
           <Select.Trigger
+            id={id}
             className="
               flex
               h-12
@@ -50,9 +47,9 @@ export function StateSelect({
 
           <Select.Portal>
             <Select.Content
-                  position="popper"
-                  sideOffset={4}
-                  className="
+              position="popper"
+              sideOffset={4}
+              className="
                     z-50
                     min-w-[var(--radix-select-trigger-width)]
                     rounded-xl
@@ -61,14 +58,14 @@ export function StateSelect({
                     bg-background
                     shadow-lg
                   "
-                >
-                  <Select.Viewport
-                    className="
+            >
+              <Select.Viewport
+                className="
                       max-h-64
                       overflow-y-auto
                       p-1
                     "
-                  >
+              >
                 {INDIAN_STATES.map((state) => (
                   <Select.Item
                     key={state}
@@ -89,9 +86,7 @@ export function StateSelect({
                       focus:bg-primary/5
                     "
                   >
-                    <Select.ItemText>
-                      {state}
-                    </Select.ItemText>
+                    <Select.ItemText>{state}</Select.ItemText>
 
                     <Select.ItemIndicator
                       className="

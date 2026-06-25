@@ -1,20 +1,31 @@
 import { z } from "zod";
 import { apiClient } from "@/api/client";
 import { endpoints } from "@/api/endpoints";
-import { type Vendor, type VendorFilterParams, VendorSchema } from "../schemas";
+import {
+  type Vendor,
+  VendorApiSchema,
+  type VendorFilterParams,
+} from "../schemas";
 
 export async function fetchVendors(): Promise<Vendor[]> {
-  return apiClient.get<Vendor[]>(endpoints.vendors.base, z.array(VendorSchema));
+  return apiClient.get<Vendor[]>(
+    endpoints.vendors.base,
+    z.array(VendorApiSchema),
+  );
 }
 
 export async function fetchVendorById(id: string): Promise<Vendor> {
-  return apiClient.get<Vendor>(endpoints.vendors.byId(id), VendorSchema);
+  return apiClient.get<Vendor>(endpoints.vendors.byId(id), VendorApiSchema);
 }
 
 export async function createVendor(
   vendor: Omit<Vendor, "id">,
 ): Promise<Vendor> {
-  return apiClient.post<Vendor>(endpoints.vendors.base, vendor, VendorSchema);
+  return apiClient.post<Vendor>(
+    endpoints.vendors.base,
+    vendor,
+    VendorApiSchema,
+  );
 }
 
 export async function updateVendor(
@@ -24,7 +35,7 @@ export async function updateVendor(
   return apiClient.put<Vendor>(
     endpoints.vendors.byId(id),
     vendor,
-    VendorSchema,
+    VendorApiSchema,
   );
 }
 
@@ -49,7 +60,7 @@ export async function filterVendors(
 
   return apiClient.get<Vendor[]>(
     endpoints.vendors.filter,
-    z.array(VendorSchema),
+    z.array(VendorApiSchema),
     queryParams,
   );
 }
